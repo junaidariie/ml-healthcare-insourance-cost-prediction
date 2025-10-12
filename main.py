@@ -80,7 +80,7 @@ st.markdown("""
 
 # Header
 st.title("🏥 Health Insurance Cost Predictor")
-st.markdown('<p class="subtitle">Get instant premium estimates based on your profile</p>', unsafe_allow_html=True)
+st.markdown('<p class="subtitle">The app could take upto <b 1 minute /b> When using first time due to api latency </p>', unsafe_allow_html=True)
 
 # Categorical options
 categorical_options = {
@@ -180,4 +180,5 @@ if st.button('💰 Calculate Insurance Cost'):
                 
         except Exception as e:
             st.error(f"❌ Connection error: {str(e)}")
+
 
