@@ -24,7 +24,7 @@ This project combines:
 
 ## 🧠 Project Overview
 
-This project is designed to provide accurate healthcare insurance cost predictions using advanced machine learning models. It includes:[8]
+This project is designed to provide accurate healthcare insurance cost predictions using advanced machine learning models. It includes
 
 - EDA and insightful data visualization
 - Segmented model training for different age groups
@@ -154,5 +154,6 @@ The system then:
 ***
 
 depth/)
+
 
 
