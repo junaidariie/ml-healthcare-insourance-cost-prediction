@@ -1,13 +1,11 @@
-Based on your request, here's the reorganized README with ML-focused content prioritized before LLM sections:
-
 ***
 
 # 🏥 AI-Powered Healthcare Insurance Cost Advisor
 
-![Streamlit App](https://img.shields.io/badge/Streamlit-Fronten
+[Streamlit App](https://img.shields.io/badge/Streamlit-Fronten
 
 
-![FastAPI](https://img.shields.io/badge/FastAPI-Backend-greenblue?%20%7C%20XGBoost-orange?style=end-to-end intelligent insurance premium prediction system** that not only estimates healthcare insurance cost using Machine Learning, but also provides **personalized guidance** using an **LLM-powered advisory chatbot**.[1]
+[FastAPI](https://img.shields.io/badge/FastAPI-Backend-greenblue?%20%7C%20XGBoost-orange?style=end-to-end intelligent insurance premium prediction system** that not only estimates healthcare insurance cost using Machine Learning, but also provides **personalized guidance** using an **LLM-powered advisory chatbot**.[1]
 
 This project combines:
 
@@ -157,3 +155,4 @@ The system then:
 ***
 
 depth/)
+
