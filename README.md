@@ -2,11 +2,10 @@
 
 # 🏥 AI-Powered Healthcare Insurance Cost Advisor
 
-[Streamlit App](https://img.shields.io/badge/Streamlit-Fronten
+🏥 AI-Powered Healthcare Insurance Cost Advisor
+<p align="center"> <img src="https://img.shields.io/badge/Streamlit-Frontend-blue?style=for-the-badge" /> <img src="https://img.shields.io/badge/FastAPI-Backend-green?style=for-the-badge" /> <img src="https://img.shields.io/badge/Railway-Hosting-purple?style=for-the-badge" /> <img src="https://img.shields.io/badge/XGBoost-ML%20Model-orange?style=for-the-badge" /> <img src="https://img.shields.io/badge/LangChain-AI%20Chatbot-yellow?style=for-the-badge" /> </p>
 
-
-[FastAPI](https://img.shields.io/badge/FastAPI-Backend-greenblue?%20%7C%20XGBoost-orange?style=end-to-end intelligent insurance premium prediction system** that not only estimates healthcare insurance cost using Machine Learning, but also provides **personalized guidance** using an **LLM-powered advisory chatbot**.[1]
-
+A complete end-to-end healthcare insurance intelligence system that predicts insurance premiums based on user lifestyle, demographics, medical background, and risk factors. The platform also includes an AI-powered advisory chatbot that explains the prediction in natural language and answers follow-up questions.
 This project combines:
 
 - A trained ML model that predicts **yearly and monthly insurance premium**
@@ -155,4 +154,5 @@ The system then:
 ***
 
 depth/)
+
 
