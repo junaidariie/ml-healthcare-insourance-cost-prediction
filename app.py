@@ -3,6 +3,7 @@ from pydantic import BaseModel, Field
 from typing import Annotated, Literal
 from prediction_helper import predict
 from one_shot_bot import generate_advice
+from chatbot_advisor import ask_chatbot
 
 class ModelInput(BaseModel):
     gender: Annotated[Literal["male", "female"], Field(description="Enter your gender")]
@@ -29,7 +30,13 @@ class ModelOutput(BaseModel):
     yearly : float
     monthly : float
     advice : str
-    
+
+class ChatMessage(BaseModel):
+    thread_id : str
+    message : str
+    yearly_cost : float
+    monthly_cost : float
+    ai_summary : str
 
 app = FastAPI()
 
@@ -90,3 +97,23 @@ def predict_output(input_data: ModelInput):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Prediction Failed: {str(e)}")
+
+
+@app.post('/chat')
+def chat(input_data : ChatMessage):
+    try:
+        yearly_cost = input_data.yearly_cost
+        monthly_cost = input_data.monthly_cost
+        ai_summary = input_data.ai_summary
+
+        response = ask_chatbot(
+            yearly_cost=yearly_cost,
+            monthly_cost=monthly_cost,
+            ai_summary=ai_summary,
+            user_message=input_data.message,
+            thread_id=input_data.thread_id
+        )
+        return {"response": response}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
