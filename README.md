@@ -45,7 +45,7 @@ This project is designed to provide accurate healthcare insurance cost predictio
 
 ### 🔹 Age-Based Segmentation
 
-To improve prediction accuracy:[12]
+To improve prediction accuracy:
 
 - **Group 1:** Age ≤ 25
     - Algorithms tested: `Linear Regression`, `Ridge Regression`, `XGBoost`
@@ -152,8 +152,3 @@ The system then:
 | `GET` | `/home` | Status check |
 
 ***
-
-depth/)
-
-
-
