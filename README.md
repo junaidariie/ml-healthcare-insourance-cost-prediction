@@ -1,145 +1,113 @@
-# 🏥 ML Healthcare Insurance Cost Prediction
+# 🏥 AI-Powered Healthcare Insurance Cost Advisor
 
-![Streamlit App](https://img.shields.io/badge/Streamlit-Deployed-brightgreen)
+![Streamlit App](https://img.shields.io/badge/Streamlit-Frontend-red?style=for-the-badge)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green?style=for-the-badge)
+![Railway](https://img.shields.io/badge/Hosted%20on-Railway-blue?style=for-the-badge)
+![Machine Learning](https://img.shields.io/badge/ML-Regression%20%7C%20XGBoost-orange?style=for-the-badge)
 
-A complete **end-to-end Machine Learning project** that predicts healthcare insurance costs based on user attributes such as age, BMI, smoking status, and more. The project is backed by a **FastAPI** backend, a user-friendly **Streamlit frontend**, and fully **deployed using Docker on AWS**.
+A complete **end-to-end intelligent insurance premium prediction system** that not only estimates healthcare insurance cost using Machine Learning, but also provides **personalized guidance** using an **LLM-powered advisory chatbot**.
 
-🔗 **Live App**: [Launch Here 🚀](https://ml-healthcare-insourance-cost-prediction-qbmwupheyvejgcf6mpmv8.streamlit.app/)
+This project combines:
 
----
-
-## 🧠 Project Overview
-
-This project is designed to provide **accurate healthcare insurance cost predictions** using advanced machine learning models. It includes:
-
-* EDA and insightful data visualization
-* Segmented model training for different age groups
-* XGBoost and regression-based models with hyperparameter tuning
-* Seamless deployment using FastAPI, Docker, and Streamlit Cloud
+- A trained ML model that predicts **yearly and monthly insurance premium**
+- A **FastAPI backend** serving predictions and chatbot responses
+- A modern **Streamlit UI**
+- A **conversational assistant** powered by LLM (Groq + LangChain)
+- Full deployment on a cloud infrastructure
 
 ---
 
-## 📊 Dataset
-
-* **Size:** 50,000 rows
-* **Features:** age, sex, BMI, children, smoker, region, charges
----
-
-## 🔍 Exploratory Data Analysis (EDA)
-
-* Visualized feature distributions and correlations
-* Detected strong influence of **smoking status**, **BMI**, and **age** on insurance charges
-* Identified non-linear patterns leading to model segmentation
+### 🔗 Live Application  
+🚀 **Launch the App:**  
+https://ml-healthcare-insourance-cost-prediction-qbmwupheyvejgcf6mpmv8.streamlit.app/
 
 ---
 
-## ⚙️ Model Strategy
+## 🧠 What This App Does
 
-### 🔹 Age-Based Segmentation
+Users provide details such as:
 
-To improve prediction accuracy:
+- Age  
+- Lifestyle and BMI category  
+- Medical history  
+- Smoking status  
+- Region  
+- Income level  
+- Insurance plan selection  
 
-* **Group 1:** Age ≤ 25
+The system then:
 
-  * Algorithms tested: `Linear Regression`, `Ridge Regression`, `XGBoost`
-  * **Final Model:** `XGBoost Regressor` with hyperparameter tuning via `RandomizedSearchCV`
-  * **Accuracy:** **98%**
-
-* **Group 2:** Age > 25
-
-  * Algorithms tested: `Linear Regression`, `Ridge Regression`, `XGBoost`
-  * **Final Model:** `XGBoost Regressor` with `RandomizedSearchCV`
-  * **Accuracy:** **99%**
-
----
-
-## 🚀 Deployment Architecture
-
-### 🔧 Backend
-
-* **Framework:** FastAPI
-* **Purpose:** Hosts ML models and exposes prediction endpoints
-* **Deployment:** Dockerized and deployed on **AWS Ubuntu EC2 instance**
-
-### 🎨 Frontend
-
-* **Framework:** Streamlit
-* **Purpose:** Interactive web UI for entering user data and viewing predictions
-* **Deployment:** Hosted via **Streamlit Cloud**
-
-### 🐳 Containerization
-
-* **Docker:** Backend containerized and pushed to **Docker Hub**
-* Docker image used for production on AWS
+1. Predicts the **estimated annual and monthly insurance premium**
+2. Generates a **human-like explanation** of why the cost is what it is
+3. Allows follow-up questions through a **chatbot** that remembers context and behaves like a personalized financial assistant
 
 ---
 
-## 🛠️ Technologies Used
+## 📦 Features
 
-| Category     | Tools / Libraries            |
-| ------------ | ---------------------------- |
-| Language     | Python                       |
-| ML Libraries | Scikit-learn, XGBoost        |
-| Backend      | FastAPI                      |
-| Frontend     | Streamlit                    |
-| Deployment   | Docker, AWS, Streamlit Cloud |
-| EDA & Viz    | Pandas, Matplotlib, Seaborn  |
+✔ Health Insurance Premium Prediction  
+✔ AI-Generated Personalized Guidance  
+✔ FastAPI-Powered ML Inference Endpoint  
+✔ Conversation-Capable Assistant with Context Memory  
+✔ Streamlit Frontend with Modern UX  
+✔ Deployed on Cloud (FastAPI on Railway + Streamlit Cloud)
 
 ---
 
-## 📦 Setup Instructions
+## 📊 Dataset & Model
 
-### 1. Clone the Repository
+- **Dataset size:** ~50K records  
+- **Important features:** Age, BMI, Risk Factors, Smoking, Plan Tier, Region, Income  
+- **Model Type:** Regression  
+- **Algorithm:** **XGBoost Regressor**  
+- **Optimization:** Hyperparameter tuning with RandomizedSearchCV  
 
-```bash
-git clone https://github.com/Junaid0-glitch/ml-healthcare-insourance-cost-prediction.git
-cd healthcare-cost-predictor
-```
+### Output includes:
 
-### 2. Backend Setup (FastAPI)
+| Output Field | Meaning |
+|-------------|----------|
+| `yearly` | Estimated annual premium |
+| `monthly` | Monthly cost breakdown |
+| `advice` | AI-generated explanation & guidance |
 
-```bash
-cd backend
-docker build -t healthcare-app .
-docker run -d -p 8000:8000 healthcare-app
-```
+---
+### Components:
 
-### 3. Frontend Setup (Streamlit)
-
-```bash
-cd ../frontend
-streamlit run main.py
-```
+| Layer | Technology |
+|-------|-----------|
+| Machine Learning Model | XGBoost |
+| API Backend | FastAPI |
+| Frontend | Streamlit Cloud |
+| Hosting | Railway (API) + Streamlit Cloud |
+| LLM Assistant | LangChain+Groq |
+| Persistence | Optional Thread Memory |
 
 ---
 
-## 🌐 API Endpoints (FastAPI)
 
-| Method | Endpoint   | Description                      |
-| ------ | ---------- | -------------------------------- |
-| POST   | `/predict` | Returns cost prediction          |
-| GET    | `/`        | Returns Hello!                   |
-| GET    | `/home`    | Returns Welcome! The API is live |
+## 🧰 Tech Stack
 
----
-
-## 📈 Model Performance
-
-| Group    | Model             | Accuracy |
-| -------- | ----------------- | -------- |
-| Age ≤ 25 | XGBoost Regressor | 98%      |
-| Age > 25 | XGBoost Regressor | 99%      |
-
-* Hyperparameter tuning done via `RandomizedSearchCV`
-* Metrics used: `R² Score`, `MAE`, `RMSE`
+| Category | Tools |
+|---------|-------|
+| Language | Python |
+| ML | Scikit-learn, XGBoost, Pandas, NumPy |
+| Backend | FastAPI |
+| Frontend | Streamlit |
+| LLM | LangChain, Groq |
+| Deployment | Railway + Streamlit Cloud |
+| Others | Requests, Pydantic, Docker (optional) |
 
 ---
 
-## 💡 Key Insights
 
-* Smokers incur significantly higher insurance charges
-* Age and BMI are strong predictors
-* Model segmentation greatly improved performance
+## ⚙️ API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/predict` | Returns yearly, monthly cost + AI summary |
+| `POST` | `/chat` | Conversational follow-up with context |
+| `GET` | `/plans` | Returns available insurance plan info |
+| `GET` | `/home` | Status check |
 
 ---
-![Screenshot 2025-06-29 114724](https://github.com/user-attachments/assets/d15d9a73-9c31-42d3-9d42-b3cef11c1d61)
+
