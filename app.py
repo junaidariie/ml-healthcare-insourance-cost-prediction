@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 from typing import Annotated, Literal
 from prediction_helper import predict
+from one_shot_bot import generate_advice
 
 class ModelInput(BaseModel):
     gender: Annotated[Literal["male", "female"], Field(description="Enter your gender")]
@@ -24,17 +25,28 @@ class ModelInput(BaseModel):
         Field()
     ]
 
+class ModelOutput(BaseModel):
+    yearly : float
+    monthly : float
+    advice : str
+    
+
 app = FastAPI()
 
-@app.get("/")
-def greetings():
-    return {"message": "Hello!"}
+@app.get("/plans")
+def plans():
+    return {
+        "Bronze": "Basic coverage, low premium.",
+        "Silver": "Balance of premium and coverage.",
+        "Gold": "Premium cost with highest benefits."
+    }
+
 
 @app.get("/home")
 def home():
     return {"message": "Welcome! The API is live"}
 
-@app.post("/predict")
+@app.post("/predict", response_model=ModelOutput)
 def predict_output(input_data: ModelInput):
     try:
         data = input_data.model_dump()
@@ -54,10 +66,27 @@ def predict_output(input_data: ModelInput):
             "Medical History": data["medical_history"]
         }
 
-        prediction = predict(converted_data)
-        return {"prediction": prediction}
+        yearly_prediction = float(predict(converted_data))
+        monthly = round(yearly_prediction / 12, 2)
 
-    except KeyError as ke:
-        raise HTTPException(status_code=400, detail=f"Missing field: {str(ke)}")
+        advice = generate_advice(
+            yearly_premium=yearly_prediction,
+            monthly_premium=monthly,
+            age=input_data.age,
+            gender=input_data.gender,
+            marital_status=input_data.marital_status,
+            dependents=input_data.number_of_dependants,
+            bmi_category=input_data.bmi_category,
+            smoking_status=input_data.smoking_status,
+            medical_history=input_data.medical_history,
+            genetic_risk=input_data.genetical_risk,
+            region=input_data.region,
+            income_lakhs=input_data.income_lakhs,
+            employment_status=input_data.employment_status,
+            insurance_plan=input_data.insurance_plan
+        )
+
+        return ModelOutput(yearly=yearly_prediction, monthly=monthly, advice=advice)
+
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail=f"Prediction Failed: {str(e)}")
