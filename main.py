@@ -451,7 +451,7 @@ if st.session_state.analysis_done:
         if st.button("🗑️ Clear Chat", use_container_width=True):
             st.session_state.chat_history = []
             st.session_state.thread_id = str(uuid.uuid4())
-            st.rerun()
+            st.experimental_rerun()
     
     if send_button and user_query.strip():
         CHAT_URL = st.secrets["CHAT_URL"]
@@ -470,7 +470,7 @@ if st.session_state.analysis_done:
                     reply = r.json()["response"]
                     st.session_state.chat_history.append(("user", user_query))
                     st.session_state.chat_history.append(("bot", reply))
-                    st.rerun()
+                    st.experimental_rerun()
                 else:
                     st.error(f"❌ Chat server error: {r.status_code}")
             except Exception as e:
