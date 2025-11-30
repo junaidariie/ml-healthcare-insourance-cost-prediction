@@ -10,3 +10,5 @@ pydantic
 langchain
 langchain-community
 langchain-groq
+langgraph
+
