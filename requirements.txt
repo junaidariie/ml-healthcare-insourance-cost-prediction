@@ -7,3 +7,6 @@ xgboost==2.0.3
 fastapi
 uvicorn
 pydantic
+langchain
+langchain-community
+langchain-groq
