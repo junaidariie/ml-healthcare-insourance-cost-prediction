@@ -1,11 +1,13 @@
+Based on your request, here's the reorganized README with ML-focused content prioritized before LLM sections:
+
+***
+
 # 🏥 AI-Powered Healthcare Insurance Cost Advisor
 
-![Streamlit App](https://img.shields.io/badge/Streamlit-Frontend-red?style=for-the-badge)
-![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green?style=for-the-badge)
-![Railway](https://img.shields.io/badge/Hosted%20on-Railway-blue?style=for-the-badge)
-![Machine Learning](https://img.shields.io/badge/ML-Regression%20%7C%20XGBoost-orange?style=for-the-badge)
+![Streamlit App](https://img.shields.io/badge/Streamlit-Fronten
 
-A complete **end-to-end intelligent insurance premium prediction system** that not only estimates healthcare insurance cost using Machine Learning, but also provides **personalized guidance** using an **LLM-powered advisory chatbot**.
+
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-greenblue?%20%7C%20XGBoost-orange?style=end-to-end intelligent insurance premium prediction system** that not only estimates healthcare insurance cost using Machine Learning, but also provides **personalized guidance** using an **LLM-powered advisory chatbot**.[1]
 
 This project combines:
 
@@ -15,13 +17,61 @@ This project combines:
 - A **conversational assistant** powered by LLM (Groq + LangChain)
 - Full deployment on a cloud infrastructure
 
----
+***
 
 ### 🔗 Live Application  
 🚀 **Launch the App:**  
-https://ml-healthcare-insourance-cost-prediction-qbmwupheyvejgcf6mpmv8.streamlit.app/
+[https://ml-healthcare-insourance-cost-prediction-qbmwupheyvejgcf6mpmv8.streamlit.app/](https://ml-healthcare-insourance-cost-prediction-qbmwupheyvejgcf6mpmv8.streamlit.app/)
 
----
+***
+
+## 🧠 Project Overview
+
+This project is designed to provide accurate healthcare insurance cost predictions using advanced machine learning models. It includes:[8]
+
+- EDA and insightful data visualization
+- Segmented model training for different age groups
+- XGBoost and regression-based models with hyperparameter tuning
+- Seamless deployment using FastAPI, Docker, and Streamlit Cloud
+
+***
+
+## 📊 Dataset
+
+- **Dataset size:** 50,000 rows
+- **Features:** age, sex, BMI, children, smoker, region, charges
+- **Important features:** Age, BMI, Risk Factors, Smoking, Plan Tier, Region, Income  
+
+***
+
+## ⚙️ Model Strategy
+
+### 🔹 Age-Based Segmentation
+
+To improve prediction accuracy:[12]
+
+- **Group 1:** Age ≤ 25
+    - Algorithms tested: `Linear Regression`, `Ridge Regression`, `XGBoost`
+    - **Final Model:** `XGBoost Regressor` with hyperparameter tuning via `RandomizedSearchCV`
+    - **Accuracy:** **98%**
+- **Group 2:** Age > 25
+    - Algorithms tested: `Linear Regression`, `Ridge Regression`, `XGBoost`
+    - **Final Model:** `XGBoost Regressor` with `RandomizedSearchCV`
+    - **Accuracy:** **99%**
+
+***
+
+## 📈 Model Performance
+
+| Group | Model | Accuracy |
+| --- | --- | --- |
+| Age ≤ 25 | XGBoost Regressor | 98% |
+| Age > 25 | XGBoost Regressor | 99% |
+
+- Hyperparameter tuning done via `RandomizedSearchCV`
+- Metrics used: `R² Score`, `MAE`, `RMSE`
+
+***
 
 ## 🧠 What This App Does
 
@@ -41,49 +91,18 @@ The system then:
 2. Generates a **human-like explanation** of why the cost is what it is
 3. Allows follow-up questions through a **chatbot** that remembers context and behaves like a personalized financial assistant
 
----
+***
 
 ## 📦 Features
 
 ✔ Health Insurance Premium Prediction  
-✔ AI-Generated Personalized Guidance  
 ✔ FastAPI-Powered ML Inference Endpoint  
-✔ Conversation-Capable Assistant with Context Memory  
 ✔ Streamlit Frontend with Modern UX  
+✔ AI-Generated Personalized Guidance  
+✔ Conversation-Capable Assistant with Context Memory  
 ✔ Deployed on Cloud (FastAPI on Railway + Streamlit Cloud)
 
----
-
-## 📊 Dataset & Model
-
-- **Dataset size:** ~50K records  
-- **Important features:** Age, BMI, Risk Factors, Smoking, Plan Tier, Region, Income  
-- **Model Type:** Regression  
-- **Algorithm:** **XGBoost Regressor**  
-- **Optimization:** Hyperparameter tuning with RandomizedSearchCV  
-
-### Output includes:
-
-| Output Field | Meaning |
-|-------------|----------|
-| `yearly` | Estimated annual premium |
-| `monthly` | Monthly cost breakdown |
-| `advice` | AI-generated explanation & guidance |
-
----
-### Components:
-
-| Layer | Technology |
-|-------|-----------|
-| Machine Learning Model | XGBoost |
-| API Backend | FastAPI |
-| Frontend | Streamlit Cloud |
-| Hosting | Railway (API) + Streamlit Cloud |
-| LLM Assistant | LangChain+Groq |
-| Persistence | Optional Thread Memory |
-
----
-
+***
 
 ## 🧰 Tech Stack
 
@@ -97,8 +116,34 @@ The system then:
 | Deployment | Railway + Streamlit Cloud |
 | Others | Requests, Pydantic, Docker (optional) |
 
----
+***
 
+## 📊 Dataset & Model Output
+
+### Output includes:
+
+| Output Field | Meaning |
+|-------------|----------|
+| `yearly` | Estimated annual premium |
+| `monthly` | Monthly cost breakdown |
+| `advice` | AI-generated explanation & guidance |
+
+***
+
+## 🏗️ System Architecture
+
+### Components:
+
+| Layer | Technology |
+|-------|-----------|
+| Machine Learning Model | XGBoost |
+| API Backend | FastAPI |
+| Frontend | Streamlit Cloud |
+| Hosting | Railway (API) + Streamlit Cloud |
+| LLM Assistant | LangChain+Groq |
+| Persistence | Optional Thread Memory |
+
+***
 
 ## ⚙️ API Endpoints
 
@@ -109,5 +154,6 @@ The system then:
 | `GET` | `/plans` | Returns available insurance plan info |
 | `GET` | `/home` | Status check |
 
----
+***
 
+depth/)
