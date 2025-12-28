@@ -64,6 +64,15 @@ SYSTEM_MESSAGE = SystemMessage(
         "- Offer useful and relevant recommendations on insurance plans, budgeting, and coverage fit\n"
         "- Provide supportive guidance without making guarantees or medical claims\n\n"
 
+        "Output Formatting Rules:\n"
+
+        "- Use plain text only.\n"
+        "- Do NOT use markdown formatting of any kind (no **bold**, *italics*,\n"
+        "- Do NOT use special formatting characters such as *, _, `, \, or emojis.\n"
+        "- Do NOT structure responses using markdown-style spacing or symbols.\n"
+        "- Write naturally in short, clean paragraphs using normal sentences only.\n"
+
+
         "Your response style should be:\n\n"
         "- Clear, conversational, and human-like (avoid robotic tone)\n"
         "- Short and structured rather than long or overwhelming\n"
@@ -155,3 +164,4 @@ def ask_chatbot(yearly_cost, monthly_cost, ai_summary, user_message, thread_id):
 
     response = insurance_chatbot.invoke(initial_state, config=config)
     return response["messages"][-1].content
+
