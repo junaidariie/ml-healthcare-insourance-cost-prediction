@@ -1,154 +1,202 @@
-***
+---
 
 # 🏥 AI-Powered Healthcare Insurance Cost Advisor
 
-🏥 AI-Powered Healthcare Insurance Cost Advisor
-<p align="center"> <img src="https://img.shields.io/badge/Streamlit-Frontend-blue?style=for-the-badge" /> <img src="https://img.shields.io/badge/FastAPI-Backend-green?style=for-the-badge" /> <img src="https://img.shields.io/badge/Railway-Hosting-purple?style=for-the-badge" /> <img src="https://img.shields.io/badge/XGBoost-ML%20Model-orange?style=for-the-badge" /> <img src="https://img.shields.io/badge/LangChain-AI%20Chatbot-yellow?style=for-the-badge" /> </p>
+<p align="center">
+  <img src="https://img.shields.io/badge/Frontend-HTML%20%7C%20CSS%20%7C%20JS-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Backend-FastAPI-green?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/ML-XGBoost-orange?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/LLM-LangChain%20%2B%20Groq-yellow?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Search-Tavily-purple?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Deployment-Railway%20%7C%20GitHub%20Pages-brightgreen?style=for-the-badge" />
+</p>
 
-A complete end-to-end healthcare insurance intelligence system that predicts insurance premiums based on user lifestyle, demographics, medical background, and risk factors. The platform also includes an AI-powered advisory chatbot that explains the prediction in natural language and answers follow-up questions.
-This project combines:
+---
 
-- A trained ML model that predicts **yearly and monthly insurance premium**
-- A **FastAPI backend** serving predictions and chatbot responses
-- A modern **Streamlit UI**
-- A **conversational assistant** powered by LLM (Groq + LangChain)
-- Full deployment on a cloud infrastructure
+## 🧠 Overview
 
-***
+The **AI-Powered Healthcare Insurance Cost Advisor** is an end-to-end intelligent system that predicts **health insurance premiums** and provides **human-like explanations** using AI.
 
-### 🔗 Live Application  
-🚀 **Launch the App:**  
-[https://ml-healthcare-insourance-cost-prediction-qbmwupheyvejgcf6mpmv8.streamlit.app/](https://ml-healthcare-insourance-cost-prediction-qbmwupheyvejgcf6mpmv8.streamlit.app/)
+It combines:
 
-***
+* Predictive machine learning
+* Conversational AI
+* Speech-to-Text and Text-to-Speech
+* Real-time external knowledge retrieval
+* A modern web-based frontend
 
-## 🧠 Project Overview
+This project closely simulates how **real-world insurtech platforms** operate.
 
-This project is designed to provide accurate healthcare insurance cost predictions using advanced machine learning models. It includes
+---
 
-- EDA and insightful data visualization
-- Segmented model training for different age groups
-- XGBoost and regression-based models with hyperparameter tuning
-- Seamless deployment using FastAPI, Docker, and Streamlit Cloud
+## 🚀 Live Application
 
-***
+🌐 **Frontend (Web App)**
+[https://junaidariie.github.io/ml-healthcare-insourance-cost-prediction/](https://junaidariie.github.io/ml-healthcare-insourance-cost-prediction/)
 
-## 📊 Dataset
+⚙️ **Backend (API)**
+Hosted using FastAPI on Railway
 
-- **Dataset size:** 50,000 rows
-- **Features:** age, sex, BMI, children, smoker, region, charges
-- **Important features:** Age, BMI, Risk Factors, Smoking, Plan Tier, Region, Income  
+---
 
-***
+## 🧩 What This System Does
+
+Users provide information such as:
+
+* Age
+* Lifestyle habits
+* BMI category
+* Medical background
+* Income range
+* Insurance preferences
+
+The system then:
+
+1. Predicts **annual and monthly insurance premiums**
+2. Explains the reasoning in **simple, human-friendly language**
+3. Allows **follow-up conversations** with memory
+4. Supports **voice input (STT)** and **voice responses (TTS)**
+5. Uses **live web search** when needed for better context
+
+---
+
+## 🧠 Key Features
+
+✔ AI-powered insurance premium prediction
+✔ Natural language explanations (no technical jargon)
+✔ Conversational chatbot with memory
+✔ Speech-to-Text (STT) for voice input
+✔ Text-to-Speech (TTS) for voice responses
+✔ Real-time knowledge retrieval using Tavily Search
+✔ Clean and responsive frontend (HTML, CSS, JavaScript)
+✔ Scalable backend with FastAPI
+✔ Cloud deployed and production-ready
+
+---
+
+## 🧪 Dataset Overview
+
+* **Dataset Size:** 50,000 records
+* **Key Features:**
+
+  * Age
+  * BMI
+  * Smoking status
+  * Region
+  * Income
+  * Medical & lifestyle indicators
+
+---
 
 ## ⚙️ Model Strategy
 
 ### 🔹 Age-Based Segmentation
 
-To improve prediction accuracy:
+To improve accuracy, separate models were trained for different age groups:
 
-- **Group 1:** Age ≤ 25
-    - Algorithms tested: `Linear Regression`, `Ridge Regression`, `XGBoost`
-    - **Final Model:** `XGBoost Regressor` with hyperparameter tuning via `RandomizedSearchCV`
-    - **Accuracy:** **98%**
-- **Group 2:** Age > 25
-    - Algorithms tested: `Linear Regression`, `Ridge Regression`, `XGBoost`
-    - **Final Model:** `XGBoost Regressor` with `RandomizedSearchCV`
-    - **Accuracy:** **99%**
+#### Group 1: Age ≤ 25
 
-***
+* Algorithms tested:
 
-## 📈 Model Performance
+  * Linear Regression
+  * Ridge Regression
+  * XGBoost
+* Final model: **XGBoost Regressor**
+* Accuracy: **~98%**
 
-| Group | Model | Accuracy |
-| --- | --- | --- |
-| Age ≤ 25 | XGBoost Regressor | 98% |
-| Age > 25 | XGBoost Regressor | 99% |
+#### Group 2: Age > 25
 
-- Hyperparameter tuning done via `RandomizedSearchCV`
-- Metrics used: `R² Score`, `MAE`, `RMSE`
+* Algorithms tested:
 
-***
+  * Linear Regression
+  * Ridge Regression
+  * XGBoost
+* Final model: **XGBoost Regressor**
+* Accuracy: **~99%**
 
-## 🧠 What This App Does
+✔ Hyperparameter tuning using `RandomizedSearchCV`
+✔ Metrics used: `R² Score`, `MAE`, `RMSE`
 
-Users provide details such as:
+---
 
-- Age  
-- Lifestyle and BMI category  
-- Medical history  
-- Smoking status  
-- Region  
-- Income level  
-- Insurance plan selection  
+## 📊 Output Format
 
-The system then:
+| Field     | Description                           |
+| --------- | ------------------------------------- |
+| `yearly`  | Estimated annual insurance premium    |
+| `monthly` | Monthly premium breakdown             |
+| `advice`  | AI-generated explanation and guidance |
 
-1. Predicts the **estimated annual and monthly insurance premium**
-2. Generates a **human-like explanation** of why the cost is what it is
-3. Allows follow-up questions through a **chatbot** that remembers context and behaves like a personalized financial assistant
+---
 
-***
+## 🧠 Conversational AI Capabilities
 
-## 📦 Features
+The assistant can:
 
-✔ Health Insurance Premium Prediction  
-✔ FastAPI-Powered ML Inference Endpoint  
-✔ Streamlit Frontend with Modern UX  
-✔ AI-Generated Personalized Guidance  
-✔ Conversation-Capable Assistant with Context Memory  
-✔ Deployed on Cloud (FastAPI on Railway + Streamlit Cloud)
+* Explain why a premium is high or low
+* Answer follow-up questions contextually
+* Suggest plan comparisons
+* Help users understand trade-offs
+* Respond using voice (TTS)
+* Accept spoken input (STT)
 
-***
+It behaves like a **real insurance advisor**, not a chatbot.
 
-## 🧰 Tech Stack
+---
 
-| Category | Tools |
-|---------|-------|
-| Language | Python |
-| ML | Scikit-learn, XGBoost, Pandas, NumPy |
-| Backend | FastAPI |
-| Frontend | Streamlit |
-| LLM | LangChain, Groq |
-| Deployment | Railway + Streamlit Cloud |
-| Others | Requests, Pydantic, Docker (optional) |
+## 🔍 Intelligent Search (Tavily)
 
-***
+When internal knowledge is insufficient, the system:
 
-## 📊 Dataset & Model Output
+* Uses Tavily Search to retrieve reliable, real-time information
+* Summarizes results in a user-friendly manner
+* Avoids overwhelming or technical explanations
 
-### Output includes:
+---
 
-| Output Field | Meaning |
-|-------------|----------|
-| `yearly` | Estimated annual premium |
-| `monthly` | Monthly cost breakdown |
-| `advice` | AI-generated explanation & guidance |
+## 🧱 System Architecture
 
-***
+| Layer             | Technology                             |
+| ----------------- | -------------------------------------- |
+| Frontend          | HTML, CSS, JavaScript                  |
+| Backend API       | FastAPI                                |
+| ML Model          | XGBoost                                |
+| Conversational AI | LangChain + Groq                       |
+| Search Tool       | Tavily                                 |
+| Speech            | STT + TTS                              |
+| Deployment        | Railway (API), GitHub Pages (Frontend) |
 
-## 🏗️ System Architecture
+---
 
-### Components:
+## 🔌 API Endpoints
 
-| Layer | Technology |
-|-------|-----------|
-| Machine Learning Model | XGBoost |
-| API Backend | FastAPI |
-| Frontend | Streamlit Cloud |
-| Hosting | Railway (API) + Streamlit Cloud |
-| LLM Assistant | LangChain+Groq |
-| Persistence | Optional Thread Memory |
+| Method | Endpoint   | Description                              |
+| ------ | ---------- | ---------------------------------------- |
+| `POST` | `/predict` | Returns premium prediction + explanation |
+| `POST` | `/chat`    | Conversational AI with memory            |
+| `GET`  | `/plans`   | Available insurance plans                |
+| `GET`  | `/health`  | API health check                         |
 
-***
+---
 
-## ⚙️ API Endpoints
+## 🎯 Why This Project Matters
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/predict` | Returns yearly, monthly cost + AI summary |
-| `POST` | `/chat` | Conversational follow-up with context |
-| `GET` | `/plans` | Returns available insurance plan info |
-| `GET` | `/home` | Status check |
+This project demonstrates:
 
-***
+* Real-world AI system design
+* End-to-end ML deployment
+* Human-centered AI communication
+* Integration of LLMs with structured ML outputs
+* Practical use of speech and search tools
+
+It closely mirrors how **modern health-fintech platforms** operate.
+
+---
+
+## 👤 Author
+
+**Junaid**
+Data Science & Machine Learning Practitioner
+Focused on building explainable, production-ready AI systems for real-world use cases.
+
+---
