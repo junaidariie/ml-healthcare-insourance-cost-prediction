@@ -1,60 +1,70 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel, Field
-from typing import Annotated, Literal
-from prediction_helper import predict
+from fastapi import FastAPI, HTTPException, UploadFile, File
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse, StreamingResponse
+from pydantic import BaseModel
+import os
 from one_shot_bot import generate_advice
+from prediction_helper import predict
 from chatbot_advisor import ask_chatbot
-
-class ModelInput(BaseModel):
-    gender: Annotated[Literal["male", "female"], Field(description="Enter your gender")]
-    marital_status: Annotated[Literal["married", "unmarried"], Field(description="Enter your marital status")]
-    age: Annotated[int, Field(gt=0, lt=110, description="Enter your age")]
-    number_of_dependants: Annotated[int, Field(gt=0, lt=8)]
-    income_lakhs: Annotated[float, Field(gt=0,description="Enter your annual income in lakhs")]
-    genetical_risk: Annotated[int, Field(gt=0, lt=6)]
-    insurance_plan: Annotated[Literal['Bronze', 'Silver', 'Gold'], Field(description="Choose one of the given plans")]
-    employment_status: Annotated[Literal['Salaried', 'Self-Employed', 'Freelancer'], Field()]
-    bmi_category: Annotated[Literal['Normal', 'Obesity', 'Overweight', 'Underweight'], Field()]
-    smoking_status: Annotated[Literal['No Smoking', 'Regular', 'Occasional'], Field()]
-    region: Annotated[Literal['Northwest', 'Southeast', 'Northeast', 'Southwest'], Field()]
-    medical_history: Annotated[
-        Literal[
-            'No Disease', 'Diabetes', 'High blood pressure', 'Diabetes & High blood pressure',
-            'Thyroid', 'Heart disease', 'High blood pressure & Heart disease',
-            'Diabetes & Thyroid', 'Diabetes & Heart disease'
-        ],
-        Field()
-    ]
-
-class ModelOutput(BaseModel):
-    yearly : float
-    monthly : float
-    advice : str
-
-class ChatMessage(BaseModel):
-    thread_id : str
-    message : str
-    yearly_cost : float
-    monthly_cost : float
-    ai_summary : str
+from utility import STT, TTS
 
 app = FastAPI()
 
-@app.get("/plans")
-def plans():
-    return {
-        "Bronze": "Basic coverage, low premium.",
-        "Silver": "Balance of premium and coverage.",
-        "Gold": "Premium cost with highest benefits."
-    }
+# ---------------- CORS ---------------- #
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# ---------------- MODELS ---------------- #
+
+class HealthInput(BaseModel):
+    gender: str
+    marital_status: str
+    age: int
+    number_of_dependants: int
+    income_lakhs: float
+    genetical_risk: int
+    insurance_plan: str
+    employment_status: str
+    bmi_category: str
+    smoking_status: str
+    region: str
+    medical_history: str
 
 
-@app.get("/home")
+class HealthOutput(BaseModel):
+    yearly: float
+    monthly: float
+    advice: str
+
+
+class ChatMessage(BaseModel):
+    thread_id: str
+    message: str
+    yearly_cost: float
+    monthly_cost: float
+    ai_summary: str
+
+
+class TTSRequest(BaseModel):
+    text: str
+
+
+# ---------------- BASIC ROUTE ---------------- #
+
+@app.get("/")
 def home():
-    return {"message": "Welcome! The API is live"}
+    return {"message": "Healthcare AI API is running."}
 
-@app.post("/predict", response_model=ModelOutput)
-def predict_output(input_data: ModelInput):
+
+# ---------------- PREDICTION ---------------- #
+
+@app.post("/predict", response_model=HealthOutput)
+def predict_output(input_data: HealthInput):
     try:
         data = input_data.model_dump()
 
@@ -93,11 +103,12 @@ def predict_output(input_data: ModelInput):
             insurance_plan=input_data.insurance_plan
         )
 
-        return ModelOutput(yearly=yearly_prediction, monthly=monthly, advice=advice)
+        return HealthOutput(yearly=yearly_prediction, monthly=monthly, advice=advice)
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Prediction Failed: {str(e)}")
 
+# ---------------- CHAT STREAM ---------------- #
 
 @app.post('/chat')
 def chat(input_data : ChatMessage):
@@ -113,7 +124,40 @@ def chat(input_data : ChatMessage):
             user_message=input_data.message,
             thread_id=input_data.thread_id
         )
-        return {"response": response}
+        return response
 
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ---------------- TTS ---------------- #
+
+@app.post("/tts")
+async def generate_tts(request: TTSRequest):
+    try:
+        if not request.text.strip():
+            raise HTTPException(status_code=400, detail="Text is empty")
+
+        audio_path = await TTS(text=request.text)
+
+        if not os.path.exists(audio_path):
+            raise HTTPException(status_code=500, detail="Audio file not created")
+
+        return FileResponse(
+            path=audio_path,
+            media_type="audio/mpeg",
+            filename="speech.mp3"
+        )
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ---------------- STT ---------------- #
+
+@app.post("/stt")
+async def transcribe_audio(file: UploadFile = File(...)):
+    try:
+        return await STT(file)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
