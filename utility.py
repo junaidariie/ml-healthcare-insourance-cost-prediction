@@ -64,3 +64,4 @@ async def STT(audio_file):
         "segments": transcription.segments,
         "language": transcription.language
     }
+
