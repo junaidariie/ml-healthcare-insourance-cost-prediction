@@ -32,7 +32,7 @@ This project closely simulates how **real-world insurtech platforms** operate.
 ## 🚀 Live Application
 
 🌐 **Frontend (Web App)**
-[https://junaidariie.github.io/ml-healthcare-insourance-cost-prediction/](https://junaidariie.github.io/ml-healthcare-insourance-cost-prediction/)
+https://junaidariie.github.io/cred-risk-model/
 
 ⚙️ **Backend (API)**
 Hosted using FastAPI on HuggingFace
@@ -200,4 +200,5 @@ Data Science & Machine Learning Practitioner
 Focused on building explainable, production-ready AI systems for real-world use cases.
 
 ---
+
 
