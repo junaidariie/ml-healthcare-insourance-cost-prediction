@@ -160,7 +160,7 @@ When internal knowledge is insufficient, the system:
 | ----------------- | -------------------------------------- |
 | Frontend          | HTML, CSS, JavaScript                  |
 | Backend API       | FastAPI                                |
-| ML Model          | XGBoost                                |
+| ML Model          | XGBoost, Linear Regression             |
 | Conversational AI | LangChain + Groq                       |
 | Search Tool       | Tavily                                 |
 | Speech            | STT + TTS                              |
@@ -200,6 +200,7 @@ Data Science & Machine Learning Practitioner
 Focused on building explainable, production-ready AI systems for real-world use cases.
 
 ---
+
 
 
 
