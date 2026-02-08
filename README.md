@@ -101,7 +101,7 @@ To improve accuracy, separate models were trained for different age groups:
   * Linear Regression
   * Ridge Regression
   * XGBoost
-* Final model: **XGBoost Regressor**
+* Final model: **Linear Regression**
 * Accuracy: **~98%**
 
 #### Group 2: Age > 25
@@ -200,6 +200,7 @@ Data Science & Machine Learning Practitioner
 Focused on building explainable, production-ready AI systems for real-world use cases.
 
 ---
+
 
 
 
